@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Admin;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
@@ -69,7 +69,7 @@ class BasisControllerTest extends DuskTestCase
         $user->assignRole('admin');
 
         $this->browse(function (Browser $browser) use ($user) {
-            $basis = Basis::create(['name' => 'New Basis']);
+            $basis = RefBasis::create(['name' => 'New Basis']);
 
             $browser
                 ->loginAs($user->id)

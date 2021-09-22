@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Allocation;
+use App\Models\ProjectAllocation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AllocationFactory extends Factory
@@ -12,7 +12,7 @@ class AllocationFactory extends Factory
      *
      * @var string
      */
-    protected $model = Allocation::class;
+    protected $model = ProjectAllocation::class;
 
     /**
      * Define the model's default state.

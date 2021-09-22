@@ -63,7 +63,7 @@ class Pipol extends Model
 
     public function reason(): BelongsTo
     {
-        return $this->belongsTo(Reason::class);
+        return $this->belongsTo(RefReason::class);
     }
 
     public function user(): BelongsTo

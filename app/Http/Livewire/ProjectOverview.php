@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Project;
-use App\Models\SubmissionStatus;
+use App\Models\RefSubmissionStatus;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -79,7 +79,7 @@ class ProjectOverview extends Component
         }
 
         if ($this->status) {
-            $query->where('submission_status_id', SubmissionStatus::findByName($this->status)->id);
+            $query->where('submission_status_id', RefSubmissionStatus::findByName($this->status)->id);
         }
 
         if ($this->sort) {
@@ -92,6 +92,6 @@ class ProjectOverview extends Component
         $projects = $query->paginate();
 
         return view('livewire.project-overview', compact('projects'))
-            ->with('submission_statuses', SubmissionStatus::all());
+            ->with('submission_statuses', RefSubmissionStatus::all());
     }
 }

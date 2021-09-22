@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BaseProjectStoreRequest;
 use App\Jobs\CreateProjectJob;
 use App\Models\BaseProject;
-use App\Models\PapType;
+use App\Models\RefPapType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +19,7 @@ class BaseProjectController extends Controller
     public function create()
     {
         return view('base-projects.create')
-            ->with(['pap_types' => PapType::all()]);
+            ->with(['pap_types' => RefPapType::all()]);
     }
 
     /**

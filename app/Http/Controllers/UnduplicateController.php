@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Allocation;
+use App\Models\ProjectAllocation;
 use Illuminate\Http\Request;
 
 class UnduplicateController extends Controller

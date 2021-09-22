@@ -95,7 +95,7 @@ class RegionInvestment extends Model
 
     public function region(): BelongsTo
     {
-        return $this->belongsTo(Region::class,'region_id','id');
+        return $this->belongsTo(RefRegion::class,'region_id','id');
     }
 
     public function project(): BelongsTo

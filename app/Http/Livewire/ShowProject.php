@@ -2,25 +2,25 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CovidIntervention;
-use App\Models\FsStatus;
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCovidIntervention;
+use App\Models\RefFsStatus;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
 use App\Models\Office;
-use App\Models\PapType;
-use App\Models\PdpChapter;
-use App\Models\PreparationDocument;
+use App\Models\RefPapType;
+use App\Models\RefPdpChapter;
+use App\Models\RefPreparationDocument;
 use App\Models\Project;
-use App\Models\ProjectStatus;
-use App\Models\Region;
-use App\Models\Sdg;
-use App\Models\SpatialCoverage;
-use App\Models\TenPointAgenda;
-use App\Models\Tier;
+use App\Models\RefProjectStatus;
+use App\Models\RefRegion;
+use App\Models\RefSdg;
+use App\Models\RefSpatialCoverage;
+use App\Models\RefTenPointAgenda;
+use App\Models\RefTier;
 use Livewire\Component;
 
 class ShowProject extends Component
@@ -697,24 +697,24 @@ class ShowProject extends Component
     {
         return view('livewire.show-project',[
             'offices'   => Office::select('id','acronym')->get(),
-            'pap_types' => PapType::all(),
-            'bases'     => Basis::all(),
-            'project_statuses' => ProjectStatus::all(),
-            'covid_interventions' => CovidIntervention::all(),
-            'spatial_coverages' => SpatialCoverage::all(),
-            'region_options' => Region::all(),
+            'pap_types' => RefPapType::all(),
+            'bases'     => RefBasis::all(),
+            'project_statuses' => RefProjectStatus::all(),
+            'covid_interventions' => RefCovidIntervention::all(),
+            'spatial_coverages' => RefSpatialCoverage::all(),
+            'region_options' => RefRegion::all(),
             'years' => config('ipms.editor.years'),
-            'approval_levels' => ApprovalLevel::all(),
-            'gads' => Gad::all(),
-            'preparation_documents' => PreparationDocument::all(),
-            'fs_statuses' => FsStatus::all(),
-            'pdp_chapters' => PdpChapter::all(),
-            'sdg_options' => Sdg::all(),
-            'ten_point_agendas' => TenPointAgenda::all(),
-            'funding_sources' => FundingSource::all(),
-            'implementation_modes' => ImplementationMode::all(),
-            'funding_institutions' => FundingInstitution::all(),
-            'tiers' => Tier::all(),
+            'approval_levels' => RefApprovalLevel::all(),
+            'gads' => RefGad::all(),
+            'preparation_documents' => RefPreparationDocument::all(),
+            'fs_statuses' => RefFsStatus::all(),
+            'pdp_chapters' => RefPdpChapter::all(),
+            'sdg_options' => RefSdg::all(),
+            'ten_point_agendas' => RefTenPointAgenda::all(),
+            'funding_sources' => RefFundingSource::all(),
+            'implementation_modes' => RefImplementationMode::all(),
+            'funding_institutions' => RefFundingInstitution::all(),
+            'tiers' => RefTier::all(),
         ]);
     }
 }

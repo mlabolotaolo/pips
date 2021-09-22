@@ -6,8 +6,8 @@ use App\Http\Requests\PipolStoreRequest;
 use App\Http\Requests\PipolUpdateRequest;
 use App\Models\Pipol;
 use App\Models\Project;
-use App\Models\Reason;
-use App\Models\SubmissionStatus;
+use App\Models\RefReason;
+use App\Models\RefSubmissionStatus;
 use Illuminate\Http\Request;
 
 class ProjectPipolController extends Controller
@@ -26,14 +26,14 @@ class ProjectPipolController extends Controller
                 ->with('baseProject', $project->base_project)
                 ->with('project', $project)
                 ->with('submissionStatus', Pipol::SUBMISSION_STATUS)
-                ->with('reasons', Reason::all());
+                ->with('reasons', RefReason::all());
         }
 
         return view('projects.pipols.create')
             ->with('baseProject', $project->base_project)
             ->with('project', $project)
             ->with('submissionStatus', Pipol::SUBMISSION_STATUS)
-            ->with('reasons', Reason::all());
+            ->with('reasons', RefReason::all());
     }
 
     /**

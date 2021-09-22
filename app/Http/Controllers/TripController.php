@@ -6,14 +6,14 @@ use App\DataTables\Scopes\TripsDataTableScope;
 use App\DataTables\TripDataTable;
 use App\Http\Requests\TripStoreRequest;
 use App\Http\Requests\TripUpdateRequest;
-use App\Models\FsInfrastructure;
-use App\Models\FundingSource;
-use App\Models\InfrastructureSector;
-use App\Models\Prerequisite;
+use App\Models\ProjectFsInfrastructure;
+use App\Models\RefFundingSource;
+use App\Models\RefInfrastructureSector;
+use App\Models\RefPrerequisite;
 use App\Models\Project;
-use App\Models\Region;
+use App\Models\RefRegion;
 use App\Models\RegionInfrastructure;
-use App\Models\RightOfWay;
+use App\Models\ProjectRightOfWay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,10 +38,10 @@ class TripController extends Controller
 
         return view('projects.trip.show', [
             'project'                   => $project,
-            'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
-            'regions'                   => Region::all(),
-            'funding_sources'           => FundingSource::all(),
-            'prerequisites'             => Prerequisite::all(),
+            'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
+            'regions'                   => RefRegion::all(),
+            'funding_sources'           => RefFundingSource::all(),
+            'prerequisites'             => RefPrerequisite::all(),
             'regionInfrastructures'     => $project->region_infrastructures,
         ]);
     }

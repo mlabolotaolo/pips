@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Basis;
+use App\Models\RefBasis;
 use Database\Seeders\BasesTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -34,7 +34,7 @@ class BasesTest extends TestCase
 
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $response = $this->get(route('admin.bases.edit', ['basis' => $basis->slug]));
 
@@ -60,7 +60,7 @@ class BasesTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $data = [
             'name' => 'New Basis'
@@ -77,7 +77,7 @@ class BasesTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $basis = Basis::factory()->create();
+        $basis = RefBasis::factory()->create();
 
         $response = $this->delete(route('admin.bases.destroy', ['basis' => $basis->slug]));
 

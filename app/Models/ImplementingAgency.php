@@ -23,7 +23,7 @@ class ImplementingAgency extends Model
 
     public function operating_unit(): BelongsTo
     {
-        return $this->belongsTo(OperatingUnit::class);
+        return $this->belongsTo(RefOperatingUnit::class);
     }
 
     public function projects(): BelongsToMany

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tier;
+use App\Models\RefTier;
 use App\Models\User;
 use Database\Seeders\TiersTableSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -63,7 +63,7 @@ class TierTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->get(route('admin.tiers.edit', $tier))
             ->assertStatus(200)
@@ -77,7 +77,7 @@ class TierTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this
             ->from(route('admin.tiers.edit', $tier))
@@ -99,7 +99,7 @@ class TierTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->delete(route('admin.tiers.destroy', $tier))
             ->assertStatus(302)

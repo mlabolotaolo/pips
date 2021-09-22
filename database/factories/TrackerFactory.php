@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\PipolStatus;
+use App\Models\RefPipolStatus;
 use App\Models\Project;
 use App\Models\Tracker;
 use App\Models\UpdatingPeriod;
@@ -28,7 +28,7 @@ class TrackerFactory extends Factory
         return [
             'updating_period_id' => UpdatingPeriod::all()->random()->id,
             'project_id' => Project::all()->random()->id,
-            'pipol_status_id' => PipolStatus::all()->random()->id,
+            'pipol_status_id' => RefPipolStatus::all()->random()->id,
             'remarks' => $this->faker->paragraph,
             'user_id' => User::all()->random()->id,
         ];

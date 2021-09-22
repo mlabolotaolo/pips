@@ -16,7 +16,7 @@
                         <div class="dropdown-caret"></div>
                     </summary>
                     <ul class="dropdown-menu dropdown-menu-se" role="menu">
-                        @foreach(\App\Models\Branch::all() as $option)
+                        @foreach(\App\Models\RefBranch::all() as $option)
                         <li>
                             <a role="button" href="javascript:void(0)" wire:click="setUpdatingPeriodId({{ $option->id }})" class="dropdown-item">{{ $option->name }}</a>
                         </li>

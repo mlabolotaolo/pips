@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CipType;
-use App\Models\CovidIntervention;
-use App\Models\FsStatus;
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
-use App\Models\InfrastructureSector;
-use App\Models\InfrastructureSubsector;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCipType;
+use App\Models\RefCovidIntervention;
+use App\Models\RefFsStatus;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
+use App\Models\RefInfrastructureSector;
+use App\Models\RefInfrastructureSubsector;
 use App\Models\OperatingUnitType;
-use App\Models\PapType;
-use App\Models\PdpChapter;
-use App\Models\PipTypology;
-use App\Models\PreparationDocument;
-use App\Models\Prerequisite;
+use App\Models\RefPapType;
+use App\Models\RefPdpChapter;
+use App\Models\RefPipTypology;
+use App\Models\RefPreparationDocument;
+use App\Models\RefPrerequisite;
 use Illuminate\Http\Request;
 
 class CreateLabelController extends Controller
@@ -48,25 +48,25 @@ class CreateLabelController extends Controller
     }
 
     protected $labelTypes = [
-        'approval_levels'               => ApprovalLevel::class,
-        'bases'                         => Basis::class,
-        'cip_types'                     => CipType::class,
-        'covid_interventions'           => CovidIntervention::class,
-        'fs_statuses'                   => FsStatus::class,
-        'funding_institutions'          => FundingInstitution::class,
-        'funding_sources'               => FundingSource::class,
-        'gads'                          => Gad::class,
-        'implementation_modes'          => ImplementationMode::class,
-        'infrastructure_sector'         => InfrastructureSector::class,
-        'infrastructure_subsectors'     => InfrastructureSubsector::class,
+        'approval_levels'               => RefApprovalLevel::class,
+        'bases'                         => RefBasis::class,
+        'cip_types'                     => RefCipType::class,
+        'covid_interventions'           => RefCovidIntervention::class,
+        'fs_statuses'                   => RefFsStatus::class,
+        'funding_institutions'          => RefFundingInstitution::class,
+        'funding_sources'               => RefFundingSource::class,
+        'gads'                          => RefGad::class,
+        'implementation_modes'          => RefImplementationMode::class,
+        'infrastructure_sector'         => RefInfrastructureSector::class,
+        'infrastructure_subsectors'     => RefInfrastructureSubsector::class,
 //        'offices'                       => Office::class,
 //        'operating_units'               => OperatingUnit::class,
         'operating_unit_types'          => OperatingUnitType::class,
-        'pap_types'                     => PapType::class,
-        'pdp_chapters'                  => PdpChapter::class,
-        'pip_typologies'                => PipTypology::class,
-        'preparation_documents'         => PreparationDocument::class,
-        'prerequisites'                 => Prerequisite::class,
+        'pap_types'                     => RefPapType::class,
+        'pdp_chapters'                  => RefPdpChapter::class,
+        'pip_typologies'                => RefPipTypology::class,
+        'preparation_documents'         => RefPreparationDocument::class,
+        'prerequisites'                 => RefPrerequisite::class,
     ];
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\PapType;
+use App\Models\RefPapType;
 use App\Models\Project;
 use Livewire\Component;
 
@@ -62,7 +62,7 @@ class ProjectCreate extends Component
     public function render()
     {
         return view('livewire.project-create', [
-            'pap_types' => PapType::all()
+            'pap_types' => RefPapType::all()
         ]);
     }
 }

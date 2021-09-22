@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectReviewStoreRequest;
-use App\Models\CipType;
-use App\Models\PipTypology;
+use App\Models\RefCipType;
+use App\Models\RefPipTypology;
 use App\Models\Project;
-use App\Models\ReadinessLevel;
+use App\Models\RefReadinessLevel;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Str;
@@ -34,9 +34,9 @@ class ProjectReviewController extends Controller
             'baseProject' => $project->base_project,
             'project'   => $project,
             'review'    => $review,
-            'pip_typologies' => PipTypology::all(),
-            'cip_types' => CipType::all(),
-            'readiness_levels' => ReadinessLevel::all(),
+            'pip_typologies' => RefPipTypology::all(),
+            'cip_types' => RefCipType::all(),
+            'readiness_levels' => RefReadinessLevel::all(),
             'yesNo' => [
                 0 => 'No',
                 1 => 'Yes',
@@ -54,9 +54,9 @@ class ProjectReviewController extends Controller
         return view('projects.reviews.create', [
             'project'   => $project,
             'review'    => new Review,
-            'pip_typologies' => PipTypology::all(),
-            'cip_types' => CipType::all(),
-            'readiness_levels' => ReadinessLevel::all(),
+            'pip_typologies' => RefPipTypology::all(),
+            'cip_types' => RefCipType::all(),
+            'readiness_levels' => RefReadinessLevel::all(),
             'yesNo' => [
                 0 => 'No',
                 1 => 'Yes',

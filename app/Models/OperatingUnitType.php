@@ -30,7 +30,7 @@ class OperatingUnitType extends Model
 
     public function operating_units(): HasMany
     {
-        return $this->hasMany(OperatingUnit::class);
+        return $this->hasMany(RefOperatingUnit::class);
     }
 
     /**

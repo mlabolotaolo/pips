@@ -8,33 +8,33 @@ use App\Http\Requests\ProjectStoreRequest;
 use App\Http\Requests\ProjectUpdateRequest;
 use App\Http\Requests\UploadAttachmentRequest;
 use App\Jobs\ProjectDeleteJob;
-use App\Models\ApprovalLevel;
-use App\Models\Basis;
-use App\Models\CipType;
+use App\Models\RefApprovalLevel;
+use App\Models\RefBasis;
+use App\Models\RefCipType;
 use App\Models\Collaborator;
-use App\Models\CovidIntervention;
-use App\Models\FsInvestment;
-use App\Models\FsStatus;
-use App\Models\FundingInstitution;
-use App\Models\FundingSource;
-use App\Models\Gad;
-use App\Models\ImplementationMode;
-use App\Models\InfrastructureSector;
+use App\Models\RefCovidIntervention;
+use App\Models\ProjectFsInvestment;
+use App\Models\RefFsStatus;
+use App\Models\RefFundingInstitution;
+use App\Models\RefFundingSource;
+use App\Models\RefGad;
+use App\Models\RefImplementationMode;
+use App\Models\RefInfrastructureSector;
 use App\Models\Office;
 use App\Models\OperatingUnitType;
-use App\Models\PapType;
-use App\Models\PdpChapter;
-use App\Models\PdpIndicator;
-use App\Models\PipTypology;
-use App\Models\PreparationDocument;
+use App\Models\RefPapType;
+use App\Models\RefPdpChapter;
+use App\Models\RefPdpIndicator;
+use App\Models\RefPipTypology;
+use App\Models\RefPreparationDocument;
 use App\Models\Project;
-use App\Models\ProjectStatus;
-use App\Models\Region;
-use App\Models\Sdg;
-use App\Models\SpatialCoverage;
-use App\Models\SubmissionStatus;
-use App\Models\TenPointAgenda;
-use App\Models\Tier;
+use App\Models\RefProjectStatus;
+use App\Models\RefRegion;
+use App\Models\RefSdg;
+use App\Models\RefSpatialCoverage;
+use App\Models\RefSubmissionStatus;
+use App\Models\RefTenPointAgenda;
+use App\Models\RefTier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -61,13 +61,13 @@ class ProjectController extends Controller
         $projectQuery = Project::query()->with(['office','owner','project_status','pipol']);
 
         if ($request->status) {
-            $projectQuery->where('submission_status_id', SubmissionStatus::findByName($request->status)->id );
+            $projectQuery->where('submission_status_id', RefSubmissionStatus::findByName($request->status)->id );
         }
 
         $projects = $this->filter($projectQuery, $request);
 
         return view('projects.index', compact('projects'))
-            ->with('submission_statuses', SubmissionStatus::withCount('projects')->get());
+            ->with('submission_statuses', RefSubmissionStatus::withCount('projects')->get());
     }
 
     /**
@@ -81,7 +81,7 @@ class ProjectController extends Controller
 
         return view('projects.create', compact('project'))
             ->with([
-                'pap_types'                 => PapType::all(),
+                'pap_types'                 => RefPapType::all(),
             ]);
     }
 
@@ -119,31 +119,31 @@ class ProjectController extends Controller
         return redirect()->route('projects.show', $project)
             ->with([
                 'offices'                   => Office::all(),
-                'pap_types'                 => PapType::all(),
-                'bases'                     => Basis::all(),
-                'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => SpatialCoverage::all(),
-                'regions'                   => Region::all(),
-                'gads'                      => Gad::all(),
-                'pip_typologies'            => PipTypology::all(),
-                'cip_types'                 => CipType::all(),
+                'pap_types'                 => RefPapType::all(),
+                'bases'                     => RefBasis::all(),
+                'project_statuses'          => RefProjectStatus::all(),
+                'spatial_coverages'         => RefSpatialCoverage::all(),
+                'regions'                   => RefRegion::all(),
+                'gads'                      => RefGad::all(),
+                'pip_typologies'            => RefPipTypology::all(),
+                'cip_types'                 => RefCipType::all(),
                 'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => ApprovalLevel::all(),
-                'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
-                'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
-                'sdgs'                      => Sdg::all(),
-                'ten_point_agendas'         => TenPointAgenda::all(),
-                'pdp_indicators'            => PdpIndicator::with('children.children.children')
+                'approval_levels'           => RefApprovalLevel::all(),
+                'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
+                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
+                'sdgs'                      => RefSdg::all(),
+                'ten_point_agendas'         => RefTenPointAgenda::all(),
+                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
                     ->where('level',1)
                     ->select('id','name')->get(),
-                'funding_sources'           => FundingSource::all(),
-                'funding_institutions'      => FundingInstitution::all(),
-                'implementation_modes'      => ImplementationMode::all(),
-                'tiers'                     => Tier::all(),
-                'preparation_documents'     => PreparationDocument::all(),
-                'fs_statuses'               => FsStatus::all(),
+                'funding_sources'           => RefFundingSource::all(),
+                'funding_institutions'      => RefFundingInstitution::all(),
+                'implementation_modes'      => RefImplementationMode::all(),
+                'tiers'                     => RefTier::all(),
+                'preparation_documents'     => RefPreparationDocument::all(),
+                'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => CovidIntervention::all(),
+                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
@@ -177,31 +177,31 @@ class ProjectController extends Controller
         return view('projects.show', compact('project'))
             ->with([
                 'offices'                   => Office::all(),
-                'pap_types'                 => PapType::all(),
-                'bases'                     => Basis::all(),
-                'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => SpatialCoverage::all(),
-                'regions'                   => Region::all(),
-                'gads'                      => Gad::all(),
-                'pip_typologies'            => PipTypology::all(),
-                'cip_types'                 => CipType::all(),
+                'pap_types'                 => RefPapType::all(),
+                'bases'                     => RefBasis::all(),
+                'project_statuses'          => RefProjectStatus::all(),
+                'spatial_coverages'         => RefSpatialCoverage::all(),
+                'regions'                   => RefRegion::all(),
+                'gads'                      => RefGad::all(),
+                'pip_typologies'            => RefPipTypology::all(),
+                'cip_types'                 => RefCipType::all(),
                 'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => ApprovalLevel::all(),
-                'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
-                'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
-                'sdgs'                      => Sdg::all(),
-                'ten_point_agendas'         => TenPointAgenda::all(),
-                'pdp_indicators'            => PdpIndicator::with('children.children.children')
+                'approval_levels'           => RefApprovalLevel::all(),
+                'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
+                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
+                'sdgs'                      => RefSdg::all(),
+                'ten_point_agendas'         => RefTenPointAgenda::all(),
+                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
                     ->where('level',1)
                     ->select('id','name')->get(),
-                'funding_sources'           => FundingSource::all(),
-                'funding_institutions'      => FundingInstitution::all(),
-                'implementation_modes'      => ImplementationMode::all(),
-                'tiers'                     => Tier::all(),
-                'preparation_documents'     => PreparationDocument::all(),
-                'fs_statuses'               => FsStatus::all(),
+                'funding_sources'           => RefFundingSource::all(),
+                'funding_institutions'      => RefFundingInstitution::all(),
+                'implementation_modes'      => RefImplementationMode::all(),
+                'tiers'                     => RefTier::all(),
+                'preparation_documents'     => RefPreparationDocument::all(),
+                'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => CovidIntervention::all(),
+                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
@@ -218,31 +218,31 @@ class ProjectController extends Controller
         return view('projects.edit', compact('project'))
             ->with([
                 'offices'                   => Office::all(),
-                'pap_types'                 => PapType::all(),
-                'bases'                     => Basis::all(),
-                'project_statuses'          => ProjectStatus::all(),
-                'spatial_coverages'         => SpatialCoverage::all(),
-                'regions'                   => Region::all(),
-                'gads'                      => Gad::all(),
-                'pip_typologies'            => PipTypology::all(),
-                'cip_types'                 => CipType::all(),
+                'pap_types'                 => RefPapType::all(),
+                'bases'                     => RefBasis::all(),
+                'project_statuses'          => RefProjectStatus::all(),
+                'spatial_coverages'         => RefSpatialCoverage::all(),
+                'regions'                   => RefRegion::all(),
+                'gads'                      => RefGad::all(),
+                'pip_typologies'            => RefPipTypology::all(),
+                'cip_types'                 => RefCipType::all(),
                 'years'                     => config('ipms.editor.years'),
-                'approval_levels'           => ApprovalLevel::all(),
-                'infrastructure_sectors'    => InfrastructureSector::with('children')->get(),
-                'pdp_chapters'              => PdpChapter::orderBy('name')->get(),
-                'sdgs'                      => Sdg::all(),
-                'ten_point_agendas'         => TenPointAgenda::all(),
-                'pdp_indicators'            => PdpIndicator::with('children.children.children')
+                'approval_levels'           => RefApprovalLevel::all(),
+                'infrastructure_sectors'    => RefInfrastructureSector::with('children')->get(),
+                'pdp_chapters'              => RefPdpChapter::orderBy('name')->get(),
+                'sdgs'                      => RefSdg::all(),
+                'ten_point_agendas'         => RefTenPointAgenda::all(),
+                'pdp_indicators'            => RefPdpIndicator::with('children.children.children')
                     ->where('level',1)
                     ->select('id','name')->get(),
-                'funding_sources'           => FundingSource::all(),
-                'funding_institutions'      => FundingInstitution::all(),
-                'implementation_modes'      => ImplementationMode::all(),
-                'tiers'                     => Tier::all(),
-                'preparation_documents'     => PreparationDocument::all(),
-                'fs_statuses'               => FsStatus::all(),
+                'funding_sources'           => RefFundingSource::all(),
+                'funding_institutions'      => RefFundingInstitution::all(),
+                'implementation_modes'      => RefImplementationMode::all(),
+                'tiers'                     => RefTier::all(),
+                'preparation_documents'     => RefPreparationDocument::all(),
+                'fs_statuses'               => RefFsStatus::all(),
                 'ou_types'                  => OperatingUnitType::with('operating_units')->get(),
-                'covidInterventions'        => CovidIntervention::all(),
+                'covidInterventions'        => RefCovidIntervention::all(),
             ]);
     }
 
@@ -286,13 +286,13 @@ class ProjectController extends Controller
         }
         if ($request->has('fs_investments')) {
             foreach ($request->fs_investments as $fs_investment) {
-                $fsToEdit = FsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
+                $fsToEdit = ProjectFsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
                 $fsToEdit->update($fs_investment);
             }
         }
         if ($request->has('region_investments')) {
             foreach ($request->fs_investments as $fs_investment) {
-                $fsToEdit = FsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
+                $fsToEdit = ProjectFsInvestment::where('project_id', $project->id)->where('fs_id', $fs_investment['fs_id'])->first();
                 $fsToEdit->update($fs_investment);
             }
         }
@@ -494,7 +494,7 @@ class ProjectController extends Controller
     {
         $project->reason_id             = $request->reason_id;
         $project->other_reason          = $request->other_reason;
-        $project->submission_status_id  = SubmissionStatus::findByName(SubmissionStatus::DROPPED)->id;
+        $project->submission_status_id  = RefSubmissionStatus::findByName(RefSubmissionStatus::DROPPED)->id;
         $project->save();
 
         Alert::success('Success','Project successfully dropped');
@@ -505,7 +505,7 @@ class ProjectController extends Controller
     public function validateProject(Request $request, Project $project)
     {
         // allow validation only if the project is endorsed
-        if ($project->submission_status->name !== SubmissionStatus::ENDORSED) {
+        if ($project->submission_status->name !== RefSubmissionStatus::ENDORSED) {
             return back();
         }
 

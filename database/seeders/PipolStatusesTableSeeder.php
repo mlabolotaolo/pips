@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\PipolStatus;
+use App\Models\RefPipolStatus;
 use Illuminate\Database\Seeder;
 
 class PipolStatusesTableSeeder extends Seeder
@@ -20,7 +20,7 @@ class PipolStatusesTableSeeder extends Seeder
         ];
 
         foreach ($seeds as $seed) {
-            PipolStatus::create([
+            RefPipolStatus::create([
                 'name' => $seed
             ]);
         }

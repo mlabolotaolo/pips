@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\BaseProject;
-use App\Models\Branch;
+use App\Models\RefBranch;
 use App\Models\Project;
 use App\Models\User;
 use App\Services\GenerateUsernameService;
@@ -47,7 +47,7 @@ class AppSetupCommand extends Command
 
     public function setupBranchesTable()
     {
-        if (! Branch::count()) {
+        if (! RefBranch::count()) {
             Artisan::call('db:seed BranchesTableSeeder');
             $this->info('Seeded branches seeder');
         } else {

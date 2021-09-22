@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Models\Tier;
+use App\Models\RefTier;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -61,7 +61,7 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->get(route('admin.tiers.edit', $tier))
             ->assertStatus(200)
@@ -75,7 +75,7 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this
             ->from(route('admin.tiers.edit', $tier))
@@ -97,7 +97,7 @@ class TierControllerTest extends TestCase
 
         $this->actingAs($this->user);
 
-        $tier = Tier::factory()->create();
+        $tier = RefTier::factory()->create();
 
         $response = $this->delete(route('admin.tiers.destroy', $tier))
             ->assertStatus(302)

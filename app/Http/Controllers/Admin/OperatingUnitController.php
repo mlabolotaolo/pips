@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DataTables\OperatingUnitsDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\OperatingUnit;
+use App\Models\RefOperatingUnit;
 use App\Models\OperatingUnitType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -50,7 +50,7 @@ class OperatingUnitController extends Controller
             'operating_unit_type_id' => 'required',
         ]);
 
-        $ou = OperatingUnit::create($request->all());
+        $ou = RefOperatingUnit::create($request->all());
 
         if ($request->has('image')) {
             $ou
@@ -80,7 +80,7 @@ class OperatingUnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(OperatingUnit $operatingUnit)
+    public function edit(RefOperatingUnit $operatingUnit)
     {
         return view('admin.operating_units.edit', compact('operatingUnit'))->with([
             'pageTitle' => 'Edit Operating Unit',
@@ -95,7 +95,7 @@ class OperatingUnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OperatingUnit $operatingUnit)
+    public function update(Request $request, RefOperatingUnit $operatingUnit)
     {
         $request->validate([
             'name' => 'required',
@@ -126,7 +126,7 @@ class OperatingUnitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OperatingUnit $operatingUnit)
+    public function destroy(RefOperatingUnit $operatingUnit)
     {
         $operatingUnit->delete();
 

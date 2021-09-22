@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attachment;
+use App\Models\ProjectAttachment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +15,7 @@ class ProjectAttachmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attachment $attachment, Request $request)
+    public function destroy(ProjectAttachment $attachment, Request $request)
     {
         Storage::delete($attachment->download_url);
 
@@ -30,7 +30,7 @@ class ProjectAttachmentController extends Controller
         return back();
     }
 
-    public function download(Attachment $attachment)
+    public function download(ProjectAttachment $attachment)
     {
         return Storage::download($attachment->download_url);
     }

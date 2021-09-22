@@ -45,7 +45,7 @@ class BaseProject extends Model
 
     public function pap_type(): BelongsTo
     {
-        return $this->belongsTo(PapType::class);
+        return $this->belongsTo(RefPapType::class);
     }
 
     public function owner(): MorphTo

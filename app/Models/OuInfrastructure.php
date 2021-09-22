@@ -38,7 +38,7 @@ class OuInfrastructure extends Model
 
     public function operating_unit(): BelongsTo
     {
-        return $this->belongsTo(OperatingUnit::class,'ou_id','id');
+        return $this->belongsTo(RefOperatingUnit::class,'ou_id','id');
     }
 
     public function project(): BelongsTo

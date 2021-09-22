@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Branch;
+use App\Models\RefBranch;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
 
@@ -27,7 +27,7 @@ class BranchesTableSeeder extends Seeder
         ];
 
         foreach ($seeds as $seed) {
-            Branch::create([
+            RefBranch::create([
                 'name' => $seed['name'],
                 'label' => $seed['label']
             ]);

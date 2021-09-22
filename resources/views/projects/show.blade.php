@@ -22,7 +22,7 @@
                             <div class="dropdown-header">
                                 Select branch
                             </div>
-                            @foreach(\App\Models\Branch::all() as $branch)
+                            @foreach(\App\Models\RefBranch::all() as $branch)
                                 <li>
                                     <a href="{{ route('base-projects.branches.show', ['base_project'=> $baseProject, 'branch' => $branch]) }}" class="dropdown-item">
                                         {{ $branch->label ?? 'N/A' }}
@@ -65,7 +65,7 @@
                                     <li class="Box-row">
                                         <select name="branch_id" id="branch_id" class="form-select" required autofocus>
                                             <option value="">Select Branch</option>
-                                            @foreach(\App\Models\Branch::all() as $option)
+                                            @foreach(\App\Models\RefBranch::all() as $option)
                                                 <option value="{{ $option->id }}">{{ $option->label . ' - ' . $option->name }}</option>
                                             @endforeach
                                         </select>

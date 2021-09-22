@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\PapType;
+use App\Models\RefPapType;
 use Livewire\Component;
 
 class ReportTables extends Component
@@ -22,7 +22,7 @@ class ReportTables extends Component
 
     public function render()
     {
-        $items = PapType::withSum('investments','y2016')
+        $items = RefPapType::withSum('investments','y2016')
             ->withSum('investments','y2017')
             ->withSum('investments','y2018')
             ->withSum('investments','y2019')

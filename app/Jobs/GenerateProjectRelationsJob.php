@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\FundingSource;
+use App\Models\RefFundingSource;
 use App\Models\Project;
-use App\Models\Region;
+use App\Models\RefRegion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -37,11 +37,11 @@ class GenerateProjectRelationsJob implements ShouldQueue
     {
         $project = $this->project;
 
-        foreach (FundingSource::all() as $fs) {
+        foreach (RefFundingSource::all() as $fs) {
             $project->fs_investments()->create(['fs_id' => $fs->id]);
         }
 
-        foreach (Region::all() as $region) {
+        foreach (RefRegion::all() as $region) {
             $project->region_investments()->create(['region_id' => $region->id]);
         }
 

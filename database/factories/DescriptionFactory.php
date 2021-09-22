@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Description;
+use App\Models\ProjectDescription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DescriptionFactory extends Factory
@@ -12,7 +12,7 @@ class DescriptionFactory extends Factory
      *
      * @var string
      */
-    protected $model = Description::class;
+    protected $model = ProjectDescription::class;
 
     /**
      * Define the model's default state.

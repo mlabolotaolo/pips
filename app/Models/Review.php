@@ -34,17 +34,17 @@ class Review extends Model
 
     public function readiness_level(): BelongsTo
     {
-        return $this->belongsTo(ReadinessLevel::class)->withDefault();
+        return $this->belongsTo(RefReadinessLevel::class)->withDefault();
     }
 
     public function pip_typology(): BelongsTo
     {
-        return $this->belongsTo(PipTypology::class)->withDefault();
+        return $this->belongsTo(RefPipTypology::class)->withDefault();
     }
 
     public function cip_type(): BelongsTo
     {
-        return $this->belongsTo(CipType::class)->withDefault();
+        return $this->belongsTo(RefCipType::class)->withDefault();
     }
 
     public function user(): BelongsTo
